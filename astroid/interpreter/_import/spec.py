@@ -177,6 +177,8 @@ class ImportlibFinder(Finder):
                 file_path = os.path.join(entry, file_name)
                 if os.path.isfile(file_path):
                     return ModuleSpec(name=modname, location=file_path, type=type_)
+            if os.path.isdir(package_directory):
+                return ModuleSpec(name=modname, location=package_directory, type=ModuleType.PY_NAMESPACE)
         return None
 
     def contribute_to_path(
